@@ -1,0 +1,21 @@
+{
+    "radio.voc": [
+        "internet radio",
+        "radio",
+        "web radio"
+    ],
+    "album.voc": [
+        "album"
+    ],
+    "mass.voc": [
+        "music assistant",
+        "music assistant skill"
+    ],
+    "artist.voc": [
+        "artist"
+    ],
+    "track.voc": [
+        "track",
+        "song"
+    ]
+}
