@@ -10,7 +10,6 @@ jobs:
     uses: OpenVoiceOS/gh-automations/.github/workflows/build-tests.yml@dev
     secrets: inherit
     with:
-      pre_install_pip: 'git+https://github.com/TigreGotico/mediavocab@feat/audit-2026-05-core git+https://github.com/TigreGotico/py-music-assistant@dev'
       python_versions: '["3.10", "3.11", "3.12", "3.13", "3.14"]'
       install_extras: 'test'
       test_path: 'test'
