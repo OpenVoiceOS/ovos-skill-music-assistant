@@ -1,7 +1,7 @@
 from os.path import join, dirname
 from typing import Iterable, Dict, Any
 
-from ovos_media_plugin_mass.music_assistant_client import SimpleHTTPMusicAssistantClient
+from py_music_assistant import SimpleHTTPMusicAssistantClient
 from ovos_utils import classproperty
 from ovos_utils.ocp import MediaType, PlaybackType, MediaEntry, Playlist
 from ovos_utils.parse import fuzzy_match
@@ -24,9 +24,8 @@ class MusicAssistantSkill(OVOSCommonPlaybackSkill):
 
     @property
     def api(self) -> SimpleHTTPMusicAssistantClient:
-        # NOTE: made a property so url can be changed without reloading skill
-        url = self.settings.get("url")
-        url = "http://100.88.41.41:8095"  # TODO - remove
+        # made a property so the url can be changed without reloading the skill
+        url = self.settings.get("url", "http://localhost:8095")
         return SimpleHTTPMusicAssistantClient(url)
 
     @classproperty
@@ -76,10 +75,10 @@ class MusicAssistantSkill(OVOSCommonPlaybackSkill):
             for entry in self._get_albums(res["albums"], phrase, base_score):
                 yield entry
         if media_type in [MediaType.AUDIOBOOK, MediaType.GENERIC]:
-            for entry in self._get_radios(res["audiobooks"], phrase, base_score):
+            for entry in self._get_audiobooks(res["audiobooks"], phrase, base_score):
                 yield entry
         if media_type in [MediaType.PODCAST, MediaType.GENERIC]:
-            for entry in self._get_radios(res["podcasts"], phrase, base_score):
+            for entry in self._get_podcasts(res["podcasts"], phrase, base_score):
                 yield entry
         if media_type in [MediaType.RADIO, MediaType.GENERIC]:
             for entry in self._get_radios(res["radio"], phrase, base_score):

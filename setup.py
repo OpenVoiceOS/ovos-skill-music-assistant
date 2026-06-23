@@ -87,6 +87,7 @@ setup(
     long_description_content_type="text/markdown",
     include_package_data=True,
     install_requires=get_requirements("requirements.txt"),
+    extras_require={"test": ["pytest", "pytest-cov", "ovoscope", "ovos-ocp-pipeline-plugin"]},
     keywords='ovos skill plugin',
     entry_points={'ovos.plugin.skill': PLUGIN_ENTRY_POINT}
 )
