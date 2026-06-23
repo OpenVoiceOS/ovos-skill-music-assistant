@@ -10,6 +10,6 @@ jobs:
     uses: OpenVoiceOS/gh-automations/.github/workflows/ovoscope.yml@dev
     secrets: inherit
     with:
-      python_version: '3.11'
+      python_version: '3.12'
       install_extras: 'test'
       test_path: 'test/end2end/'

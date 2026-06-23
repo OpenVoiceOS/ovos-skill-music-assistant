@@ -10,7 +10,7 @@ jobs:
     uses: OpenVoiceOS/gh-automations/.github/workflows/coverage.yml@dev
     secrets: inherit
     with:
-      python_version: '3.11'
+      python_version: '3.12'
       coverage_source: 'ovos_skill_music_assistant'
       test_path: 'test/'
       install_extras: 'test'
