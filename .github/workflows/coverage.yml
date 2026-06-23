@@ -14,5 +14,5 @@ jobs:
       python_version: '3.12'
       coverage_source: 'ovos_skill_music_assistant'
       test_path: 'test/'
-      install_extras: 'test'
+      test_extras: 'test'
       min_coverage: 0
