@@ -28,6 +28,18 @@ Set your Music Assistant server URL in the skill settings (`settings.json`):
 
 - [docs/index.md](docs/index.md) — overview, search flow, testing
 
+## Tests
+
+```bash
+pip install -e .[test]
+pytest test/                  # unit + end2end (ovoscope), network-free
+```
+
+The end-to-end tests ([test/end2end/](test/end2end/)) run the **real** OCP pipeline
+in a `ovoscope` MiniCroft: a spoken utterance is classified into an
+`ovos.common_play.query`, this skill answers, and OCP selects a winner to play —
+with the Music Assistant HTTP client mocked.
+
 ## Credits
 - JarbasAi
 
