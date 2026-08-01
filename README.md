@@ -3,12 +3,14 @@
 OCP search skill for [Music Assistant](https://www.music-assistant.io/).
 
 It answers OCP `play …` requests with playable results from a Music Assistant
-server. Playback of the returned `library://` uris is handled by the companion
-[ovos-media-plugin-mass](https://github.com/OpenVoiceOS/ovos-media-plugin-mass).
+server. The companion
+[ovos-media-plugin-mass](https://github.com/OpenVoiceOS/ovos-media-plugin-mass)
+plays back the returned `library://` uris.
 
-On the modern `ovos-media` stack the catalog/search role is served by the
+On the modern `ovos-media` stack, the
 [ovos-media-provider-mass](https://github.com/OpenVoiceOS/ovos-media-provider-mass)
-MediaProvider; this skill is the equivalent for the legacy OCP/`ovos-audio` stack.
+MediaProvider serves the catalog/search role. This skill is the equivalent for
+the legacy OCP/`ovos-audio` stack.
 
 ## Configure
 
@@ -20,13 +22,13 @@ Set your Music Assistant server URL in the skill settings (`settings.json`):
 
 ## Related projects
 
-- [ovos-media-plugin-mass](https://github.com/OpenVoiceOS/ovos-media-plugin-mass) — Music Assistant playback backend
-- [ovos-media-provider-mass](https://github.com/OpenVoiceOS/ovos-media-provider-mass) — Music Assistant MediaProvider (ovos-media stack)
-- [py-music-assistant](https://github.com/TigreGotico/py-music-assistant) — shared HTTP client + mediavocab bridge
+- [ovos-media-plugin-mass](https://github.com/OpenVoiceOS/ovos-media-plugin-mass): Music Assistant playback backend
+- [ovos-media-provider-mass](https://github.com/OpenVoiceOS/ovos-media-provider-mass): Music Assistant MediaProvider (ovos-media stack)
+- [py-music-assistant](https://github.com/TigreGotico/py-music-assistant): shared HTTP client and mediavocab bridge
 
 ## Docs
 
-- [docs/index.md](docs/index.md) — overview, search flow, testing
+- [docs/index.md](docs/index.md) — overview, search flow, and tests
 
 ## Tests
 
@@ -35,10 +37,10 @@ pip install -e .[test]
 pytest test/                  # unit + end2end (ovoscope), network-free
 ```
 
-The end-to-end tests ([test/end2end/](test/end2end/)) run the **real** OCP pipeline
-in a `ovoscope` MiniCroft: a spoken utterance is classified into an
-`ovos.common_play.query`, this skill answers, and OCP selects a winner to play —
-with the Music Assistant HTTP client mocked.
+The end-to-end tests ([test/end2end/](test/end2end/)) run the real OCP pipeline
+in a `ovoscope` MiniCroft. A spoken utterance is classified into an
+`ovos.common_play.query`, this skill answers, and OCP selects a winner to play.
+The tests mock the Music Assistant HTTP client.
 
 ## Credits
 - JarbasAi
