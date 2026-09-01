@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ovos-skill-music-assistant"
+dynamic = ["version"]
+description = "ovos mass skill plugin"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [
+    { name = "JarbasAi", email = "jarbasai@mailfence.com" },
+]
+keywords = ["ovos", "skill", "plugin"]
+requires-python = ">=3.12"
+dependencies = [
+    "ovos-utils>=0.0.38",
+    "ovos-bus-client>=0.1.0",
+    "ovos-workshop>=0.0.16",
+    "py-music-assistant>=0.0.1",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-cov",
+    "ovoscope",
+    "ovos-ocp-pipeline-plugin",
+]
+
+[project.urls]
+Homepage = "https://github.com/OpenVoiceOS/ovos-skill-music-assistant"
+
+[project.entry-points."ovos.plugin.skill"]
+"ovos-skill-music-assistant.openvoiceos" = "ovos_skill_music_assistant:MusicAssistantSkill"
+
+[tool.setuptools]
+packages = ["ovos_skill_music_assistant"]
+
+[tool.setuptools.package-dir]
+ovos_skill_music_assistant = ""
+
+[tool.setuptools.dynamic]
+version = { attr = "ovos_skill_music_assistant.version.__version__" }
+
+[tool.setuptools.package-data]
+ovos_skill_music_assistant = [
+    "*.json",
+    "locale/**/*",
+    "res/**/*",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
