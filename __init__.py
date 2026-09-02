@@ -3,16 +3,25 @@ from typing import Iterable, Dict, Any
 
 from py_music_assistant import SimpleHTTPMusicAssistantClient
 from ovos_utils import classproperty
+from ovos_utils.log import log_deprecation
 from ovos_utils.ocp import MediaType, PlaybackType, MediaEntry, Playlist
 from ovos_utils.parse import fuzzy_match
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_workshop.decorators.ocp import ocp_search, ocp_featured_media
 from ovos_workshop.skills.common_play import OVOSCommonPlaybackSkill
 
+from ovos_skill_music_assistant.version import VERSION_MAJOR
+
 
 class MusicAssistantSkill(OVOSCommonPlaybackSkill):
 
     def __init__(self, *args, **kwargs):
+        log_deprecation("ovos-skill-music-assistant is deprecated and will be "
+                         "replaced by ovos-media-provider-mass / "
+                         "ovos-media-plugin-mass once the ovos-media stack "
+                         "becomes the default player — install those "
+                         "MediaProvider plugins instead",
+                         deprecation_version=f"{VERSION_MAJOR + 1}.0.0")
         super().__init__(supported_media=[MediaType.MUSIC,
                                           MediaType.RADIO,
                                           MediaType.AUDIOBOOK,
