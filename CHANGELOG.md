@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.7a1](https://github.com/OpenVoiceOS/ovos-skill-music-assistant/tree/0.1.7a1) (2026-09-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-music-assistant/compare/0.1.6a8...0.1.7a1)
+
+**Merged pull requests:**
+
+- fix: speak useful errors and make setup findable [\#8](https://github.com/OpenVoiceOS/ovos-skill-music-assistant/pull/8) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.1.6a8](https://github.com/OpenVoiceOS/ovos-skill-music-assistant/tree/0.1.6a8) (2026-09-02)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-music-assistant/compare/0.1.6a7...0.1.6a8)
