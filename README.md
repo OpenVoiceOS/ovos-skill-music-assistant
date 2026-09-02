@@ -51,8 +51,12 @@ Set your Music Assistant server URL in this skill's settings — the
 under this skill's settings page:
 
 ```json
-{ "url": "http://192.168.1.100:8095" }
+{ "url": "http://192.168.1.100:8095", "token": "your-mass-api-token" }
 ```
+
+Music Assistant 2.11 and later require an API token: create one in the
+Music Assistant web UI under Settings → Users and put it in the `token`
+setting. Leave it blank for older, unauthenticated servers.
 
 Settings changes made through the control panel before the skill's first run
 are only picked up on the run after that: the skill writes its own
@@ -70,8 +74,8 @@ If something goes wrong:
 - no results for something you know is in your library means Music Assistant
   itself does not have that media indexed — check its own search first.
 - an error about the server refusing the request usually means authentication:
-  Music Assistant 2.11 requires a token this skill does not yet send; support
-  for it is coming with the next client release.
+  check the `token` setting — Music Assistant 2.11 and later reject requests
+  without a valid API token.
 
 ## Related projects
 

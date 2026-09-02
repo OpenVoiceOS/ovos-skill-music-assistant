@@ -24,6 +24,22 @@ def _search(skill, client, phrase, media_type):
         return list(skill.search_mass(phrase, media_type))
 
 
+def test_token_reaches_client_constructor():
+    skill = mod.MusicAssistantSkill(bus=FakeBus(), skill_id=SKILL_ID)
+    skill.settings["token"] = "sekrit-token"
+    with patch.object(mod, "SimpleHTTPMusicAssistantClient") as mock_client:
+        assert skill.api is mock_client.return_value
+    mock_client.assert_called_once_with("http://localhost:8095", token="sekrit-token")
+
+
+def test_no_token_passes_none_to_client_constructor():
+    skill = mod.MusicAssistantSkill(bus=FakeBus(), skill_id=SKILL_ID)
+    skill.settings["token"] = None
+    with patch.object(mod, "SimpleHTTPMusicAssistantClient") as mock_client:
+        assert skill.api is mock_client.return_value
+    mock_client.assert_called_once_with("http://localhost:8095", token=None)
+
+
 def test_music_search_returns_media_entries():
     skill, client = _skill()
     results = _search(skill, client, "worms", MediaType.MUSIC)

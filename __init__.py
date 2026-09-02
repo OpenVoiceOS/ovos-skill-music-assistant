@@ -37,7 +37,8 @@ class MusicAssistantSkill(OVOSCommonPlaybackSkill):
     def api(self) -> SimpleHTTPMusicAssistantClient:
         # made a property so the url can be changed without reloading the skill
         url = self.settings.get("url", "http://localhost:8095")
-        return SimpleHTTPMusicAssistantClient(url)
+        token = self.settings.get("token")
+        return SimpleHTTPMusicAssistantClient(url, token=token)
 
     @classproperty
     def runtime_requirements(self):
