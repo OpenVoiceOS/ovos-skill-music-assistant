@@ -11,6 +11,13 @@
             "value": "http://192.168.1.100:8095",
             "placeholder": "http://192.168.1.100:8095",
             "hint": "The base URL of your Music Assistant server, including the port (default 8095). Find it in the Music Assistant frontend under Settings > General, or in the Home Assistant Music Assistant integration's device info."
+          },
+          {
+            "name": "token",
+            "type": "text",
+            "label": "Music Assistant API token",
+            "value": "",
+            "hint": "Create one in the Music Assistant web UI under Settings > Users. Required by Music Assistant 2.11 and later; leave blank for older, unauthenticated servers."
           }
         ]
       }
