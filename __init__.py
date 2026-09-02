@@ -17,10 +17,10 @@ class MusicAssistantSkill(OVOSCommonPlaybackSkill):
 
     def __init__(self, *args, **kwargs):
         log_deprecation("ovos-skill-music-assistant is deprecated and will be "
-                         "replaced by ovos-media-provider-mass / "
-                         "ovos-media-plugin-mass once the ovos-media stack "
-                         "becomes the default player — install those "
-                         "MediaProvider plugins instead",
+                         "replaced by ovos-media-provider-mass (search/catalog "
+                         "in the OCP pipeline) and ovos-media-plugin-mass "
+                         "(playback backend for ovos-media) — install those "
+                         "packages instead",
                          deprecation_version=f"{VERSION_MAJOR + 1}.0.0")
         super().__init__(supported_media=[MediaType.MUSIC,
                                           MediaType.RADIO,

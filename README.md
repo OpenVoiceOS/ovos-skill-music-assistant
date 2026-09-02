@@ -2,14 +2,17 @@
 >
 > This OCP **search skill** is deprecated and unmaintained. OCP search skills
 > (`OVOSCommonPlaybackSkill` + `@ocp_search`) are replaced by **MediaProvider**
-> plugins once the [`ovos-media`](https://github.com/OpenVoiceOS/ovos-media)
-> stack becomes the default player — the catalog/search half moves to
-> [`ovos-media-provider-mass`](https://github.com/OpenVoiceOS/ovos-media-provider-mass)
-> and playback moves to
-> [`ovos-media-plugin-mass`](https://github.com/OpenVoiceOS/ovos-media-plugin-mass).
-> Both packages are published, but they only do anything once `ovos-media` is
-> running as your player — installing them does not replace this skill under
-> the legacy OCP/`ovos-audio` stack.
+> plugins loaded by the OCP pipeline plugin. The search and catalog functionality
+> moves to [`ovos-media-provider-mass`](https://github.com/OpenVoiceOS/ovos-media-provider-mass),
+> a MediaProvider running in-process within the OCP pipeline.
+> Playback of Music Assistant tracks moves to
+> [`ovos-media-plugin-mass`](https://github.com/OpenVoiceOS/ovos-media-plugin-mass),
+> a playback backend for the `ovos-media` player daemon.
+> Both packages are published and work once their respective stacks are active —
+> `ovos-media-provider-mass` provides search results when the OCP pipeline
+> invokes MediaProviders; `ovos-media-plugin-mass` handles playback when
+> `ovos-media` is running as your player. Installing them does not replace this skill
+> under the legacy OCP/`ovos-audio` stack.
 >
 > - **How MediaProviders work / how to migrate:** https://github.com/OpenVoiceOS/ovos-media/blob/dev/docs/media-providers.md
 > - **Base-class deprecation:** [ovos-workshop#423](https://github.com/OpenVoiceOS/ovos-workshop/pull/423)
