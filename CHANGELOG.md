@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.6a7](https://github.com/OpenVoiceOS/ovos-skill-music-assistant/tree/0.1.6a7) (2026-09-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-music-assistant/compare/0.1.6a6...0.1.6a7)
+
+**Merged pull requests:**
+
+- docs: deprecation notice — superseded by MediaProvider plugins [\#7](https://github.com/OpenVoiceOS/ovos-skill-music-assistant/pull/7) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.1.6a6](https://github.com/OpenVoiceOS/ovos-skill-music-assistant/tree/0.1.6a6) (2026-09-01)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-music-assistant/compare/0.1.6a5...0.1.6a6)
