@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0a1](https://github.com/OpenVoiceOS/ovos-skill-music-assistant/tree/0.2.0a1) (2026-09-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-music-assistant/compare/0.1.7a1...0.2.0a1)
+
+**Merged pull requests:**
+
+- feat: authenticate against Music Assistant with an API token [\#10](https://github.com/OpenVoiceOS/ovos-skill-music-assistant/pull/10) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.1.7a1](https://github.com/OpenVoiceOS/ovos-skill-music-assistant/tree/0.1.7a1) (2026-09-02)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-music-assistant/compare/0.1.6a8...0.1.7a1)
