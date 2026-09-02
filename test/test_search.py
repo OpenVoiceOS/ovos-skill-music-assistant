@@ -1,6 +1,8 @@
 """Unit tests for the Music Assistant skill's OCP search scoring (network-free)."""
 from unittest.mock import MagicMock, patch
 
+import requests
+from music_assistant_models.errors import MusicAssistantError
 from ovos_utils.fakebus import FakeBus
 from ovos_utils.ocp import MediaType, MediaEntry, Playlist
 
@@ -67,6 +69,37 @@ def test_mass_vocab_boosts_score():
     plain_worms = next(r for r in plain if r.title == "Worms")
     boosted_worms = next(r for r in boosted if r.title == "Worms")
     assert boosted_worms.match_confidence >= plain_worms.match_confidence
+
+
+def test_search_succeeds_when_server_is_reachable():
+    """Regression check: a healthy server still yields results as before."""
+    skill, client = _skill()
+    with patch.object(mod, "SimpleHTTPMusicAssistantClient", return_value=client), \
+            patch.object(skill, "speak_dialog") as speak_dialog:
+        results = list(skill.search_mass("worms", MediaType.MUSIC))
+    assert results
+    assert all(isinstance(r, MediaEntry) for r in results)
+    speak_dialog.assert_not_called()
+
+
+def test_connection_failure_speaks_unreachable_dialog_once():
+    skill, client = _skill()
+    client.search_media.side_effect = requests.exceptions.ConnectionError("boom")
+    with patch.object(mod, "SimpleHTTPMusicAssistantClient", return_value=client), \
+            patch.object(skill, "speak_dialog") as speak_dialog:
+        results = list(skill.search_mass("worms", MediaType.MUSIC))
+    assert results == []
+    speak_dialog.assert_called_once_with("mass.unreachable")
+
+
+def test_server_error_speaks_error_dialog_once():
+    skill, client = _skill()
+    client.search_media.side_effect = MusicAssistantError("server refused")
+    with patch.object(mod, "SimpleHTTPMusicAssistantClient", return_value=client), \
+            patch.object(skill, "speak_dialog") as speak_dialog:
+        results = list(skill.search_mass("worms", MediaType.MUSIC))
+    assert results == []
+    speak_dialog.assert_called_once_with("mass.error")
 
 
 def test_featured_media_returns_playlist():

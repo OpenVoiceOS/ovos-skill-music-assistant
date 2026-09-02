@@ -1,0 +1,19 @@
+{
+  "skillMetadata": {
+    "sections": [
+      {
+        "name": "Music Assistant server",
+        "fields": [
+          {
+            "name": "url",
+            "type": "text",
+            "label": "Music Assistant server address",
+            "value": "http://192.168.1.100:8095",
+            "placeholder": "http://192.168.1.100:8095",
+            "hint": "The base URL of your Music Assistant server, including the port (default 8095). Find it in the Music Assistant frontend under Settings > General, or in the Home Assistant Music Assistant integration's device info."
+          }
+        ]
+      }
+    ]
+  }
+}

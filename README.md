@@ -7,18 +7,49 @@ server. The companion
 [ovos-media-plugin-mass](https://github.com/OpenVoiceOS/ovos-media-plugin-mass)
 plays back the returned `library://` uris.
 
-On the modern `ovos-media` stack, the
-[ovos-media-provider-mass](https://github.com/OpenVoiceOS/ovos-media-provider-mass)
-MediaProvider serves the catalog/search role. This skill is the equivalent for
-the legacy OCP/`ovos-audio` stack.
+## Setup
 
-## Configure
+Check which player stack you run before installing anything. On the classic
+`ovos-audio`/OCP stack, this skill does the catalog search and hands playback
+to [ovos-media-plugin-mass](https://github.com/OpenVoiceOS/ovos-media-plugin-mass);
+install both together. On the newer `ovos-media` stack, this skill is replaced
+entirely at flag day by
+[ovos-media-provider-mass](https://github.com/OpenVoiceOS/ovos-media-provider-mass),
+which does catalog search and playback on its own — do not install this skill
+there.
 
-Set your Music Assistant server URL in the skill settings (`settings.json`):
+For the classic stack:
+
+```bash
+pip install ovos-skill-music-assistant ovos-media-plugin-mass
+```
+
+Set your Music Assistant server URL in this skill's settings — the
+`url` field in `settings.json`, reachable through the OVOS control panel
+under this skill's settings page:
 
 ```json
 { "url": "http://192.168.1.100:8095" }
 ```
+
+Settings changes made through the control panel before the skill's first run
+are only picked up on the run after that: the skill writes its own
+first-run marker into `settings.json` the first time it loads, which can
+overwrite a hand-edited file dropped in earlier. Reload the skill (or restart
+it) once after changing the URL for the first time if it does not seem to
+take effect.
+
+Say "play some jazz on music assistant" to verify the setup works end to end.
+
+If something goes wrong:
+
+- an "I couldn't reach your Music Assistant server" reply means the `url` in
+  settings is wrong or the server is down — check both.
+- no results for something you know is in your library means Music Assistant
+  itself does not have that media indexed — check its own search first.
+- an error about the server refusing the request usually means authentication:
+  Music Assistant 2.11 requires a token this skill does not yet send; support
+  for it is coming with the next client release.
 
 ## Related projects
 
