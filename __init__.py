@@ -1,6 +1,8 @@
 from os.path import join, dirname
 from typing import Iterable, Dict, Any
 
+import requests
+from music_assistant_models.errors import MusicAssistantError
 from py_music_assistant import SimpleHTTPMusicAssistantClient
 from ovos_utils import classproperty
 from ovos_utils.log import log_deprecation
@@ -74,7 +76,16 @@ class MusicAssistantSkill(OVOSCommonPlaybackSkill):
             base_score += 20  # explicit request
             phrase = self.remove_voc(phrase, "mass")
 
-        res = self.api.search_media(phrase)
+        try:
+            res = self.api.search_media(phrase)
+        except requests.exceptions.RequestException:
+            self.log.exception("failed to reach the Music Assistant server")
+            self.speak_dialog("mass.unreachable")
+            return
+        except MusicAssistantError:
+            self.log.exception("Music Assistant server rejected the search")
+            self.speak_dialog("mass.error")
+            return
 
         if media_type in [MediaType.MUSIC, MediaType.GENERIC]:
             for entry in self._get_tracks(res["tracks"], phrase, base_score):
